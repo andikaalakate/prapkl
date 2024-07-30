@@ -25,56 +25,33 @@
     <main class="p-4">
         <section class="my-8">
             <header class="text-center mb-6">
-                <h2 class="text-3xl font-bold">INI ARTIKEL!</h2>
+                <h2 class="text-3xl font-bold">INI BARANG!</h2>
             </header>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <article class="bg-white rounded-md border border-gray-300 shadow-md p-4">
-                    <header class="bg-red-400 text-white text-xl p-4 rounded-t-md">
-                        <h3>Bu</h3>
-                    </header>
-                    <figure class="my-4 aspect-[3/4]">
-                        <img class="w-full h-full object-cover rounded-md" src="image.jpg" alt="Deskripsi gambar">
-                    </figure>
-                    <figcaption class="p-2">
-                        <p>Nganu</p>
-                    </figcaption>
-                </article>
+                <?php
+                // Looping
+                include 'connection/conn.php';
 
-                <article class="bg-white rounded-md border border-gray-300 shadow-md p-4">
-                    <header class="bg-red-400 text-white text-xl p-4 rounded-t-md">
-                        <h3>Bi</h3>
-                    </header>
-                    <figure class="my-4 aspect-[3/4]">
-                        <img class="w-full h-full object-cover rounded-md" src="image.jpg" alt="Deskripsi gambar">
-                    </figure>
-                    <div class="p-2">
-                        <p>Nganu</p>
-                    </div>
-                </article>
+                $sql = mysqli_query($conn, "SELECT * FROM barang");
 
-                <article class="bg-white rounded-md border border-gray-300 shadow-md p-4">
-                    <header class="bg-red-400 text-white text-xl p-4 rounded-t-md">
-                        <h3>Bu</h3>
-                    </header>
-                    <figure class="my-4 aspect-[3/4]">
-                        <img class="w-full h-full object-cover rounded-md" src="image.jpg" alt="Deskripsi gambar">
-                    </figure>
-                    <div class="p-2">
-                        <p>Nganu</p>
-                    </div>
-                </article>
-
-                <article class="bg-white rounded-md border border-gray-300 shadow-md p-4">
-                    <header class="bg-red-400 text-white text-xl p-4 rounded-t-md">
-                        <h3>Bi</h3>
-                    </header>
-                    <figure class="my-4 aspect-[3/4]">
-                        <img class="w-full h-full object-cover rounded-md" src="image.jpg" alt="Deskripsi gambar">
-                    </figure>
-                    <div class="p-2">
-                        <p>Nganu</p>
-                    </div>
-                </article>
+                while ($data = mysqli_fetch_array($sql)) {
+                ?>
+                    <article class="bg-white rounded-md border border-gray-300 shadow-md p-4">
+                        <header class="bg-red-400 text-white text-xl p-4 rounded-t-md">
+                            <h3><?= $data['nama'] ?></h3>
+                        </header>
+                        <figure class="my-4 aspect-[3/4]">
+                            <img class="w-full h-full object-cover rounded-md" src="image.jpg" alt="Deskripsi gambar">
+                        </figure>
+                        <figcaption class="p-2">
+                            <p><?= $data['deskripsi'] ?></p>
+                            <p>Jumlah: <?= $data['jumlah'] ?></p>
+                            <p>Status: <?= $data['status'] ?></p>
+                        </figcaption>
+                    </article>
+                <?php
+                }
+                ?>
             </div>
         </section>
 
